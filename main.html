@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4CAF50">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <title>Lista de Tareas</title>
+</head>
+<body>
+  <div class="app">
+    <h1>📋 Mis Tareas</h1>
+    <div class="input-group">
+      <input id="tareaInput" type="text" placeholder="Nueva tarea...">
+      <button onclick="agregarTarea()">➕</button>
+    </div>
+    <ul id="listaTareas"></ul>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
