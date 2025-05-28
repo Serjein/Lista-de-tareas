@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#4CAF50">
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
-  <title>Lista de Tareas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#4CAF50" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <title>Listas de Tareas</title>
 </head>
 <body>
   <div class="app">
-    <h1>📋 Mis Tareas</h1>
+    <h1>📋 Mis Listas</h1>
     <div class="input-group">
-      <input id="tareaInput" type="text" placeholder="Nueva tarea...">
-      <button onclick="agregarTarea()">➕</button>
+      <input id="listaNombre" type="text" placeholder="Nombre de la lista...">
+      <select id="color">
+        <option value="color-azul">Verde</option>
+        <option value="color-verde">Rojo</option>
+        <option value="color-rosa">Morado</option>
+      </select>
+      <button onclick="crearListaDesdeFormulario()">➕ Crear Lista</button>
     </div>
-    <ul id="listaTareas"></ul>
+    <div id="contenedorListas"></div>
   </div>
   <script src="script.js"></script>
   <script>
@@ -25,3 +30,4 @@
   </script>
 </body>
 </html>
+
