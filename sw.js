@@ -2,7 +2,7 @@ self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open('tareas-store').then(function(cache) {
       return cache.addAll([
-        'main.html',
+        'index.html',
         'style.css',
         'script.js',
         'manifest.json',
