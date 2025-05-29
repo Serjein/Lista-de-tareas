@@ -1,7 +1,9 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
+  background: #833AB4;
+background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%,
+ rgba(252, 176, 69, 1) 100%);
   color: #fff;
 }
 
@@ -35,12 +37,12 @@ input[type="text"] {
   border: none;
   border-radius: 8px;
   font-size: 1em;
-  background-color: #1ff5e37a;
+  background-color: #fff;
   color:#646363;
 }
 
 button {
-  background-color: #f51fc0d3;
+  background-color: #f5e01fd3;
   border: none;
   padding: 10px 20px;
   font-size: 1.2em;
@@ -50,7 +52,7 @@ button {
 }
 
 button:hover{
-  background-color: #fa5ad2d3;
+  background-color: #fae84ad3;
 }
 
 ul {
@@ -77,14 +79,18 @@ li button {
   cursor: pointer;
 }
 
-#color{
+.lista{
   border-radius: 4px;
-  background-color: #1ff5e37a;
+}
+
+#color{
+  border-radius: 8px;
+  background-color: #fff;
   color:#646363;
 }
 
 .color-verde {
-  background-color: #05a012;
+  background-color: #0514a0;
 }
 
 .color-rojo {
@@ -92,7 +98,7 @@ li button {
 }
 
 .color-morado {
-  background-color: #b454f5;
+  background-color: #6e03fa;
 }
 
 .oculto {
@@ -102,16 +108,33 @@ li button {
 @media (max-width: 480px) {
   .input-group {
     flex-direction: column;
-    align-items: stretch;
+    gap: 8px;
   }
 
-  .input-group > * {
+  .input-group > input[type="text"] {
+    width: 100% !important;
+    font-size: 0.8em;
+    padding: 6px 10px;
+    height: 36px;
+    box-sizing: border-box;
+    flex: none !important; /* Esto evita que crezca */
+  }
+
+  .input-group > select,
+  .input-group > button {
     width: 100%;
-    font-size: 1em;
+    font-size: 0.9em;
+    padding: 6px 8px;
+    height: 36px;
+    box-sizing: border-box;
   }
-
-  button {
-    padding: 10px;
-    font-size: 1em;
+  button{
+    font-size: 0.6em;
+    padding: 6px 8px;
   }
 }
+
+
+
+
+
