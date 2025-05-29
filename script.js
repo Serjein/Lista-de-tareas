@@ -106,7 +106,7 @@ function cargarListas() {
   });
 }
 
-window.onload = cargarListas;
+
 
 function exportarListas() {
   const datos = JSON.parse(localStorage.getItem('listas')) || [];
@@ -166,3 +166,5 @@ function importarListas() {
   };
   lector.readAsText(archivo);
 }
+
+window.onload = cargarListas;
