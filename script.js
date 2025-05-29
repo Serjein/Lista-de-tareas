@@ -107,3 +107,62 @@ function cargarListas() {
 }
 
 window.onload = cargarListas;
+
+function exportarListas() {
+  const datos = JSON.parse(localStorage.getItem('listas')) || [];
+  const blob = new Blob([JSON.stringify(datos, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'listas_tareas.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importarListas() {
+  const archivo = document.getElementById('importarArchivo').files[0];
+  if (!archivo) return;
+
+  const lector = new FileReader();
+  lector.onload = function(e) {
+    try {
+      const datos = JSON.parse(e.target.result);
+      localStorage.setItem('listas', JSON.stringify(datos));
+      contenedor.innerHTML = ''; // Limpiar listas actuales
+      cargarListas(); // Recargar desde localStorage
+    } catch (err) {
+      alert('Error al importar el archivo JSON.');
+    }
+  };
+  lector.readAsText(archivo);
+}
+
+function exportarListas() {
+  const datos = JSON.parse(localStorage.getItem('listas')) || [];
+  const blob = new Blob([JSON.stringify(datos, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'listas_tareas.json';
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function importarListas() {
+  const archivo = document.getElementById('importador').files[0];
+  if (!archivo) return;
+
+  const lector = new FileReader();
+  lector.onload = function(e) {
+    try {
+      const datos = JSON.parse(e.target.result);
+      localStorage.setItem('listas', JSON.stringify(datos));
+      location.reload(); // Recarga para aplicar los cambios
+    } catch (err) {
+      alert('El archivo no es válido.');
+    }
+  };
+  lector.readAsText(archivo);
+}

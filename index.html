@@ -19,6 +19,10 @@
         <option value="color-rosa">Morado</option>
       </select>
       <button onclick="crearListaDesdeFormulario()">➕ Crear Lista</button>
+<button onclick="exportarListas()">📤 Exportar Listas</button>
+<input type="file" id="importador" accept="application/json" onchange="importarListas()" style="display:none;">
+<button onclick="document.getElementById('importador').click()">📥 Importar Listas</button>
+
     </div>
     <div id="contenedorListas"></div>
   </div>
