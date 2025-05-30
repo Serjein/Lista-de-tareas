@@ -55,6 +55,14 @@ button:hover{
   background-color: #fae84ad3;
 }
 
+.input-tarea{
+  margin-left: 10px;
+}
+
+.btn-agregar{
+  margin-left: 10px;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -79,8 +87,27 @@ li button {
   cursor: pointer;
 }
 
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* alineación vertical arriba */
+  gap: 10px;
+}
+
+li span {
+  flex: 1;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+
 .lista{
   border-radius: 4px;
+}
+
+.btn-borrar-lista{
+  margin-bottom: 5px;
+  margin-left: 10px;
 }
 
 #color{
@@ -104,6 +131,19 @@ li button {
 .oculto {
   display: none;
 }
+
+li {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  flex-wrap: wrap;
+}
+
+li::before,
+li::after {
+  box-sizing: border-box;
+}
+
 
 @media (max-width: 480px) {
   .input-group {

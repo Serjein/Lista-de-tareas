@@ -6,8 +6,8 @@ function guardarListas() {
     const nombre = lista.querySelector('h3').textContent;
     const color = Array.from(lista.classList).find(c => c.startsWith('color-')) || '';
     const tareas = [];
-    lista.querySelectorAll('ul li').forEach(li => {
-      tareas.push(li.firstChild.textContent);
+    lista.querySelectorAll('ul li span').forEach(span => {
+      tareas.push(span.textContent);
     });
     datos.push({ nombre, color, tareas });
   });
@@ -19,18 +19,20 @@ function crearLista(nombre, color, tareas = []) {
 
   const lista = document.createElement('div');
   lista.className = 'lista';
-  lista.classList.add(color); // Aplica clase de color
+  lista.classList.add(color);
 
   const titulo = document.createElement('h3');
   titulo.textContent = nombre;
   lista.appendChild(titulo);
 
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = 'Nueva tarea...';
+const input = document.createElement('input');
+input.type = 'text';
+input.placeholder = 'Nueva tarea...';
+input.classList.add('input-tarea'); // <-- clase para dar margen
 
   const btnAgregar = document.createElement('button');
-  btnAgregar.textContent = 'Agregar';
+btnAgregar.textContent = 'Agregar';
+btnAgregar.classList.add('btn-agregar'); // <-- clase para dar margen
 
   const ul = document.createElement('ul');
 
@@ -47,7 +49,9 @@ function crearLista(nombre, color, tareas = []) {
     const texto = input.value.trim();
     if (texto) {
       const li = document.createElement('li');
-      li.textContent = texto;
+
+      const span = document.createElement('span');
+      span.textContent = texto;
 
       const btnEliminar = document.createElement('button');
       btnEliminar.textContent = '🗑️';
@@ -56,6 +60,7 @@ function crearLista(nombre, color, tareas = []) {
         guardarListas();
       };
 
+      li.appendChild(span);
       li.appendChild(btnEliminar);
       ul.appendChild(li);
       input.value = '';
@@ -65,13 +70,18 @@ function crearLista(nombre, color, tareas = []) {
 
   tareas.forEach(texto => {
     const li = document.createElement('li');
-    li.textContent = texto;
+
+    const span = document.createElement('span');
+    span.textContent = texto;
+
     const btnEliminar = document.createElement('button');
     btnEliminar.textContent = '🗑️';
     btnEliminar.onclick = () => {
       li.remove();
       guardarListas();
     };
+
+    li.appendChild(span);
     li.appendChild(btnEliminar);
     ul.appendChild(li);
   });
@@ -82,6 +92,7 @@ function crearLista(nombre, color, tareas = []) {
 
   const btnBorrarLista = document.createElement('button');
   btnBorrarLista.textContent = '❌ Borrar Lista';
+  btnBorrarLista.classList.add('btn-borrar-lista');
   btnBorrarLista.onclick = () => {
     lista.remove();
     guardarListas();
@@ -106,37 +117,6 @@ function cargarListas() {
   });
 }
 
-
-
-function exportarListas() {
-  const datos = JSON.parse(localStorage.getItem('listas')) || [];
-  const blob = new Blob([JSON.stringify(datos, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'listas_tareas.json';
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function importarListas() {
-  const archivo = document.getElementById('importarArchivo').files[0];
-  if (!archivo) return;
-
-  const lector = new FileReader();
-  lector.onload = function(e) {
-    try {
-      const datos = JSON.parse(e.target.result);
-      localStorage.setItem('listas', JSON.stringify(datos));
-      contenedor.innerHTML = ''; // Limpiar listas actuales
-      cargarListas(); // Recargar desde localStorage
-    } catch (err) {
-      alert('Error al importar el archivo JSON.');
-    }
-  };
-  lector.readAsText(archivo);
-}
-
 function exportarListas() {
   const datos = JSON.parse(localStorage.getItem('listas')) || [];
   const blob = new Blob([JSON.stringify(datos, null, 2)], { type: 'application/json' });
@@ -159,7 +139,7 @@ function importarListas() {
     try {
       const datos = JSON.parse(e.target.result);
       localStorage.setItem('listas', JSON.stringify(datos));
-      location.reload(); // Recarga para aplicar los cambios
+      location.reload();
     } catch (err) {
       alert('El archivo no es válido.');
     }
