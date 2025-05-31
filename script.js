@@ -9,12 +9,13 @@ function guardarListas() {
     lista.querySelectorAll('ul li span').forEach(span => {
       tareas.push(span.textContent);
     });
-    datos.push({ nombre, color, tareas });
+    const visible = !lista.querySelector('ul').classList.contains('oculto');
+    datos.push({ nombre, color, tareas, visible });
   });
   localStorage.setItem('listas', JSON.stringify(datos));
 }
 
-function crearLista(nombre, color, tareas = []) {
+function crearLista(nombre, color, tareas = [], visible = true) {
   if (!nombre) return;
 
   const lista = document.createElement('div');
@@ -29,7 +30,6 @@ function crearLista(nombre, color, tareas = []) {
   input.type = 'text';
   input.placeholder = 'Nueva tarea...';
   input.classList.add('input-tarea');
-  
 
   const btnAgregar = document.createElement('button');
   btnAgregar.textContent = 'Agregar';
@@ -43,15 +43,22 @@ function crearLista(nombre, color, tareas = []) {
     ul.classList.toggle('oculto');
     input.classList.toggle('oculto');
     btnAgregar.classList.toggle('oculto');
+    guardarListas();
   };
   lista.appendChild(toggleBtn);
+
+  // Aplicar visibilidad inicial
+  if (!visible) {
+    ul.classList.add('oculto');
+    input.classList.add('oculto');
+    btnAgregar.classList.add('oculto');
+  }
 
   function agregarTarea(texto) {
     const li = document.createElement('li');
     const span = document.createElement('span');
     span.textContent = texto;
 
-    // Botón editar
     const btnEditar = document.createElement('button');
     btnEditar.textContent = '✏️';
     btnEditar.onclick = () => {
@@ -75,7 +82,6 @@ function crearLista(nombre, color, tareas = []) {
       inputEdicion.focus();
     };
 
-    // Botón eliminar
     const btnEliminar = document.createElement('button');
     btnEliminar.textContent = '🗑️';
     btnEliminar.onclick = () => {
@@ -127,7 +133,7 @@ function crearListaDesdeFormulario() {
 function cargarListas() {
   const datos = JSON.parse(localStorage.getItem('listas')) || [];
   datos.forEach(lista => {
-    crearLista(lista.nombre, lista.color, lista.tareas);
+    crearLista(lista.nombre, lista.color, lista.tareas, lista.visible);
   });
 }
 
