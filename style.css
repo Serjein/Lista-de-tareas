@@ -1,12 +1,14 @@
+/* -----------------------------------
+   Estilos globales
+----------------------------------- */
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #833AB4;
-background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%,
- rgba(252, 176, 69, 1) 100%);
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
   color: #fff;
 }
 
+/* Contenedor principal de la app */
 .app {
   max-width: 500px;
   margin: auto;
@@ -14,15 +16,19 @@ background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1
   text-align: center;
 }
 
-h1 {
+/* Títulos */
+h1, h3 {
   font-size: 2em;
-  color:#fff;
+  color: #fff;
+  text-align: center;
 }
-
 h3 {
-  color:#fff;
+  font-size: 1.2em;
 }
 
+/* -----------------------------------
+   Grupo de entrada de nueva tarea
+----------------------------------- */
 .input-group {
   display: flex;
   flex-wrap: wrap;
@@ -38,61 +44,125 @@ input[type="text"] {
   border-radius: 8px;
   font-size: 1em;
   background-color: #fff;
-  color:#646363;
+  color: #646363;
 }
 
-button {
+/* button {
   background-color: #f5e01fd3;
   border: none;
   padding: 10px 20px;
+  margin-left: 5px;
   font-size: 1.2em;
-  color: white;
+  color: rgb(94, 93, 93);
   border-radius: 8px;
   cursor: pointer;
 }
 
-button:hover{
+button:hover {
   background-color: #fae84ad3;
 }
 
-.input-tarea{
+.input-tarea, .btn-agregar {
   margin-left: 10px;
+} */
+
+/* Botones principales */
+button {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 18px;
+  margin-left: 3px;
+  border-radius: 12px;
+  font-size: 1em;
+  font-weight: 500;
+  color: #ffffff;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.btn-agregar{
-  margin-left: 10px;
+button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
 }
 
+/* Botones de tareas (editar, eliminar, etc.) */
+li button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+li button:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Botones SVG (editar título, ocultar tareas) */
+.lista button.edit-titulo,
+.lista button.toggle-lista {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.lista button.edit-titulo:hover,
+.lista button.toggle-lista:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive */
+/* @media (max-width: 480px) {
+  button {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .input-group > button {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  li button {
+    padding: 8px;
+  }
+} */
+
+
+/* -----------------------------------
+   Lista y tareas
+----------------------------------- */
 ul {
   list-style-type: none;
   padding: 0;
 }
 
 li {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   padding: 10px;
   margin: 5px 0;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  text-align: left;
-}
-
-li button {
-  background: #4CAF50;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start; /* alineación vertical arriba */
+  align-items: flex-start;
   gap: 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  flex-wrap: wrap;
+}
+
+li::before, li::after {
+  box-sizing: border-box;
 }
 
 li span {
@@ -101,21 +171,52 @@ li span {
   word-break: break-word;
 }
 
+/* li button {
+  background: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+} */
 
-.lista{
-  border-radius: 4px;
+/* -----------------------------------
+   Drag & Drop
+----------------------------------- */
+.dragging {
+  opacity: 0.5;
+  background-color: rgba(131, 58, 180, 1);
 }
 
-.btn-borrar-lista{
+.dragging-lista {
+  opacity: 0.6;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px dashed white;
+  transform: scale(0.98);
+}
+
+/* -----------------------------------
+   Estilo para cada contenedor de lista
+----------------------------------- */
+.lista {
+  border-radius: 10px;
+  padding-top: 0.5rem;
+  touch-action: none;
+  margin-bottom: 1rem;
+}
+
+.btn-borrar-lista {
   margin-bottom: 5px;
   margin-left: 10px;
 }
 
-#color{
+#color {
   border-radius: 8px;
   background-color: #fff;
-  color:#646363;
+  color: #646363;
 }
+
+/* Colores personalizados de fondo por lista */
 
 .color-verde {
   background-color: #0514a0;
@@ -129,23 +230,82 @@ li span {
   background-color: #6e03fa;
 }
 
+.color-amarillo {
+  background-color: #f5e01fd3;
+}
+
+.color-naranja{
+  background-color: #fa3403;
+}
+
+/* Ocultar elementos */
 .oculto {
   display: none;
 }
 
-li {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  word-break: break-word;
-  flex-wrap: wrap;
+/* -----------------------------------
+   Edición del título de la lista
+----------------------------------- */
+.lista h3 {
+  margin: 0;
+  font-size: 1.2em;
+  display: inline-block;
+  color: #fff;
 }
 
-li::before,
-li::after {
-  box-sizing: border-box;
+.lista button.edit-titulo,
+.lista button.toggle-lista {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 6px;
+  padding: 6px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
 }
 
+.lista button.edit-titulo:hover,
+.lista button.toggle-lista:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
 
+.lista button.edit-titulo svg,
+.lista button.toggle-lista svg {
+  fill: white;
+  width: 18px;
+  height: 18px;
+  
+}
+
+.lista input.titulo-editando {
+  font-size: 1.2em;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: none;
+  width: 90%;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+.lista input[type="text"] {
+  width: 80%;
+  margin: 5px auto;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1em;
+  text-align: center;
+  display: block;
+}
+
+/* -----------------------------------
+   Responsive para pantallas pequeñas
+----------------------------------- */
 @media (max-width: 480px) {
   .input-group {
     flex-direction: column;
@@ -158,7 +318,7 @@ li::after {
     padding: 6px 10px;
     height: 36px;
     box-sizing: border-box;
-    flex: none !important; /* Esto evita que crezca */
+    flex: none !important;
   }
 
   .input-group > select,
@@ -169,13 +329,23 @@ li::after {
     height: 36px;
     box-sizing: border-box;
   }
-  button{
+
+  button {
     font-size: 0.6em;
     padding: 6px 8px;
+    margin-left: 3px;
   }
+
+  /* .lista button.edit-titulo,
+  .lista button.toggle-lista {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+  } */
+
+  /* .lista button.edit-titulo svg,
+  .lista button.toggle-lista svg {
+    width: 18px;
+    height: 18px;
+  } */
 }
-
-
-
-
-
