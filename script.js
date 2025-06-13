@@ -186,18 +186,24 @@ function crearLista(nombre, color, tareas = [], visible = true) {
 
   lista.append(input, btnAgregar, ul);
 
-  // ← nota: botón con ícono SVG para borrar toda la lista
-  const btnBorrarLista = document.createElement('button');
-  btnBorrarLista.classList.add('btn-borrar-lista');
-  btnBorrarLista.innerHTML = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
-      <path d="M3 6l3 18h12l3-18H3zm5 15H6l-.5-15h3l-.5 15zm6 0h-3l-.5-15h3l.5 15zm6 0h-3l-.5-15h3l.5 15zM15.5 3l1-1h-9l1 1H5v2h14V3h-3.5z"/>
-    </svg> Borrar Lista`;
-  btnBorrarLista.onclick = () => {
+ // ← nota: botón con ícono SVG para borrar toda la lista
+const btnBorrarLista = document.createElement('button');
+btnBorrarLista.classList.add('btn-borrar-lista');
+btnBorrarLista.innerHTML = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+    <path d="M3 6l3 18h12l3-18H3zm5 15H6l-.5-15h3l-.5 15zm6 0h-3l-.5-15h3l.5 15zm6 0h-3l-.5-15h3l.5 15zM15.5 3l1-1h-9l1 1H5v2h14V3h-3.5z"/>
+  </svg> Borrar Lista`;
+
+btnBorrarLista.onclick = () => {
+  const confirmar = confirm("¿Estás seguro de que quieres borrar esta lista?");
+  if (confirmar) {
     lista.remove();
     guardarListas();
-  };
-  lista.appendChild(btnBorrarLista);
+  }
+};
+
+lista.appendChild(btnBorrarLista);
+
 
   // ← nota: hacer la lista arrastrable
   lista.draggable = true;
