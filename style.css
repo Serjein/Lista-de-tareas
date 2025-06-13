@@ -4,7 +4,12 @@
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
   color: #fff;
 }
 
@@ -17,7 +22,8 @@ body {
 }
 
 /* Títulos */
-h1, h3 {
+h1,
+h3 {
   font-size: 2em;
   color: #fff;
   text-align: center;
@@ -46,26 +52,6 @@ input[type="text"] {
   background-color: #fff;
   color: #646363;
 }
-
-/* button {
-  background-color: #f5e01fd3;
-  border: none;
-  padding: 10px 20px;
-  margin-left: 5px;
-  font-size: 1.2em;
-  color: rgb(94, 93, 93);
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #fae84ad3;
-}
-
-.input-tarea, .btn-agregar {
-  margin-left: 10px;
-} */
-
 /* Botones principales */
 button {
   background: rgba(255, 255, 255, 0.15);
@@ -120,24 +106,6 @@ li button:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Responsive */
-/* @media (max-width: 480px) {
-  button {
-    font-size: 1em;
-    padding: 10px;
-  }
-
-  .input-group > button {
-    font-size: 1em;
-    padding: 10px;
-  }
-
-  li button {
-    padding: 8px;
-  }
-} */
-
-
 /* -----------------------------------
    Lista y tareas
 ----------------------------------- */
@@ -161,7 +129,8 @@ li {
   flex-wrap: wrap;
 }
 
-li::before, li::after {
+li::before,
+li::after {
   box-sizing: border-box;
 }
 
@@ -170,15 +139,6 @@ li span {
   overflow-wrap: break-word;
   word-break: break-word;
 }
-
-/* li button {
-  background: #4CAF50;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-} */
 
 /* -----------------------------------
    Drag & Drop
@@ -234,8 +194,8 @@ li span {
   background-color: #f5e01fd3;
 }
 
-.color-naranja{
-  background-color: #fa3403;
+.color-naranja {
+  background-color: #02912d;
 }
 
 /* Ocultar elementos */
@@ -279,7 +239,6 @@ li span {
   fill: white;
   width: 18px;
   height: 18px;
-  
 }
 
 .lista input.titulo-editando {
@@ -335,17 +294,4 @@ li span {
     padding: 6px 8px;
     margin-left: 3px;
   }
-
-  /* .lista button.edit-titulo,
-  .lista button.toggle-lista {
-    width: 32px;
-    height: 32px;
-    padding: 6px;
-  } */
-
-  /* .lista button.edit-titulo svg,
-  .lista button.toggle-lista svg {
-    width: 18px;
-    height: 18px;
-  } */
 }
